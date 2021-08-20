@@ -17,21 +17,16 @@ def my_range_function(start, end, step):
             break
 
 my_range = my_range_function(0,10,1)
-print(next(my_range))
-print(next(my_range))
-print(next(my_range))
-print(next(my_range))
-print(next(my_range))
-print(next(my_range))
-print(next(my_range))
-print(next(my_range))
-print(next(my_range))
-print(next(my_range))
-print(next(my_range))
+# print(next(my_range))
+# print(next(my_range))
+# print(next(my_range))
+# print(next(my_range))
+result = list(my_range)
+print(result)
 
 
 
-# 2. Реализовать функцию enumerate с помощью генератора.
+# # 2. Реализовать функцию enumerate с помощью генератора.
 
 def my_enumerate_function(object):
     index = 0
@@ -41,9 +36,11 @@ def my_enumerate_function(object):
 
 my_list = ['apple', 'banana', 'cherry']
 my_enumerate = my_enumerate_function(my_list)
-print(next(my_enumerate))
-print(next(my_enumerate))
-print(next(my_enumerate))
+# print(next(my_enumerate))
+# print(next(my_enumerate))
+# print(next(my_enumerate))
+result = list(my_enumerate)
+print(result)
 
 
 # 3. Реализовать функцию map с помощью генератора.
@@ -62,9 +59,11 @@ def my_func(i):
 
 
 my_map = my_map_function(my_list, my_func)
-print(next(my_map))
-print(next(my_map))
-print(next(my_map))
+# print(next(my_map))
+# print(next(my_map))
+# print(next(my_map))
+result = list(my_map)
+print(result)
 
-
-    
+result2 = list(map(my_func, my_list))   
+print(result2)
