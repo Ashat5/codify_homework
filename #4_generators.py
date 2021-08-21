@@ -23,7 +23,8 @@ my_range = my_range_function(0,10,1)
 # print(next(my_range))
 result = list(my_range)
 print(result)
-
+result2 = list(range(0, 10, 1))   
+print(result2)
 
 
 # # 2. Реализовать функцию enumerate с помощью генератора.
@@ -41,7 +42,8 @@ my_enumerate = my_enumerate_function(my_list)
 # print(next(my_enumerate))
 result = list(my_enumerate)
 print(result)
-
+result2 = list(enumerate(my_list))   
+print(result2)
 
 # 3. Реализовать функцию map с помощью генератора.
 
