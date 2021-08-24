@@ -8,9 +8,7 @@ import random
 
 def guess_number(attempts, end_of_range):
     users_attempts = 0
-
     number_to_guess = random.randint(1, end_of_range)
-    number_to_guess = number_to_guess
     while users_attempts != attempts:
         users_number = end_of_range + 1
         while users_number > end_of_range:
