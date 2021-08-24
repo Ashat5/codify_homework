@@ -15,7 +15,13 @@ for i in alphabet:
     file.write('%s' % i)
     file.close()
 
-users_input = input('Вы хотите удалить созданные текстовые файлы? Введите да или нет: ')
+
+users_input = input('''
+                      Вы хотите удалить созданные текстовые файлы?
+                      Для удаления введите "да";
+                      Для выхода из приложения нажмите любую клавишу;
+                      Ваш ввод: ''')
+users_input = users_input.lower()
 if users_input == 'да':
   for i in alphabet:
     os.remove(os.path.join(sys.path[0], '%s.txt' % i))
