@@ -47,16 +47,11 @@ average_age = average_calculation(ages)
 def main():
     average_calculation(salarys)
     average_calculation(ages)
-    return average_salary, average_age
+    
 main()
-with open(FILE_NAME) as file:
-    file.read()
 
 with open(FILE_NAME, 'w') as file:
-    file.write('Average_salary =' + '%s' % average_salary + '\n')
-
-with open(FILE_NAME) as file:
-    file.read()
+    file.write('Average_salary = ' + '%s' % average_salary + '\n')
 
 with open(FILE_NAME, 'w') as file:
-    file.write('Average_age =' + '%s' % average_age )
+    file.write('Average_age = ' + '%s' % average_age )
