@@ -31,30 +31,35 @@ class Person:
         self.is_active = is_active
 
 
-    def get_full_name(self, first_name, last_name, middle_name):
+    def get_full_name(self):
+        first_name = self.first_name
+        last_name = self.last_name
+        middle_name = self.middle_name
+        print(first_name, last_name, middle_name)
         return first_name, last_name, middle_name
 
-    def get_gmail(self, email):
-        self.email = email
+    def get_gmail(self):
+        email = self.email
         if '@gmail.com' in email:
+            print (email)
             return email
 
-    def view_full_information(self):
-        print(self.first_name, '/', self.last_name, '/', self.middle_name, '/', self.email, '/',\
-            self.is_active)
+def view_full_information(person):
+    print(person.first_name, '/', person.last_name, '/', person.middle_name, '/', person.email, '/',\
+    person.is_active)
 
 
 person_1 = Person
-person_1.view_full_information(Person)
+view_full_information(person_1)
 
 person_2 = Person('Loginova', 'Larisa', 'Anatolievna', 'larisa@mail.com', 'works in school')
-person_2.view_full_information()
+view_full_information(person_2)
 
 person_3 = Person('Ribas', 'Roman', 'Vladislavovich', 'ribas@inbox.ru', 'works as a mechanic')
-person_3.view_full_information()
+view_full_information(person_3)
 
 person_4 = Person('Tokareva', 'Elena', 'Vladimirovna', 'elenka_milaya@gmail.com', 'is studying at a university')
-person_4.view_full_information()
+view_full_information(person_4)
 
 person_5 = Person('Ten', 'Vladislav', 'Arturovich', 'tenchik99@mail.com', 'works as a salesman')
-person_5.view_full_information()
+view_full_information(person_5)
