@@ -8,12 +8,8 @@ BASE_SAVE_PATH = sys.path[0] + '/output-images/'
 IMAGE_EXTENSIONS = ('.png', '.jpg', '.jpeg')
 processing_files = os.listdir(LOAD_PATH)
 
-try:
-    path_to_save = sys.argv[1]
-except IndexError:
-    path_to_save = BASE_SAVE_PATH
 
-os.mkdir(path_to_save)
+os.mkdir(BASE_SAVE_PATH)
 for k in processing_files:
     if k.endswith(IMAGE_EXTENSIONS):
         img = Image.open(LOAD_PATH + k)
@@ -28,7 +24,7 @@ for k in processing_files:
         font = ImageFont.truetype('verdana.ttf', size=40)
         draw_text = ImageDraw.Draw(img)
         draw_text.text(insertion_coordinates,'%s' % kn, font=font, fill='yellow')
-        img.save(path_to_save + '%s.jpg' % kn)
+        img.save(BASE_SAVE_PATH + '%s.jpg' % kn)
         img.close()        
 
 
@@ -36,30 +32,3 @@ for k in processing_files:
 
         
 
-
-        # watermark = kn
-        # new_img = Image.new('RGB', size = (size)) #BASE_SAVE_PATH + '%s.jpg' % kn
-        # position = (img.width - watermark.width,
-        #             img.height - watermark.height)
-        # img.paste(watermark, position, watermark)
-
-
-
-
-
-
-
-# img = Image.open(LOAD_PATH)
-# draw = ImageDraw.Draw(img)
-# draw.text((5,10),'MY PYTHON')
-# img.save(BASE_SAVE_PATH)
-# img.close
-
-# im = Image.open('d:/beach.jpeg')
-# watermark = Image.open('d:/logo.png')
-# # Вычисляем расположение watermark
-# position = (im.width - watermark.width,
-#              im.height - watermark.height)
-# im.paste(watermark, position, watermark)
-
-# im.show()
