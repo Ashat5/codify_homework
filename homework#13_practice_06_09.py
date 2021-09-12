@@ -173,8 +173,8 @@ def get_rental_car_cost(days):
         cost -= 20
     return cost
 
-def get_trip_cost(plane_ride_cost, hotel_cost, rental_car_cost, spending_money ):
-    return plane_ride_cost + hotel_cost + rental_car_cost + spending_money
+def get_trip_cost(nights, citys, city, days, spending_money):
+    return get_hotel_cost(nights) + get_plane_ride_cost(citys, city) + get_rental_car_cost(days) + spending_money
 
 def main():
     citys = [{"Шарлотт": 183},
@@ -185,7 +185,7 @@ def main():
         for item in i:
             print(item)
     city = input('Введите город в который хотите полететь: ')
-    plane_ride_cost = get_plane_ride_cost(citys, city)
+    
     nights = None
     days = None
     spending_money = None
@@ -194,21 +194,21 @@ def main():
             nights = int(input('Введите количество ночей которые хотите провести в отеле: '))
         except ValueError:
             print('Вы должны ввести цифру!')  
-    hotel_cost = get_hotel_cost(nights)
+    
 
     while type(days) != int:
         try:
             days = int(input('Введите на сколько дней хотите орендовать авто: '))
         except ValueError:
             print('Вы должны ввести цифру!') 
-    rental_car_cost = get_rental_car_cost(days)
+    
 
     while type(spending_money) != int:
         try:
             spending_money = int(input('Введите количество средств на дополнительные расходы: '))
         except ValueError:
             print('Вы должны ввести цифру!')
-    trip_cost = get_trip_cost(plane_ride_cost, hotel_cost, rental_car_cost, spending_money )
+    trip_cost = get_trip_cost(nights, citys, city, days, spending_money)
     print('На поездку в {0} вам понадобится {1} $'.format(city, trip_cost))
 
 main()
