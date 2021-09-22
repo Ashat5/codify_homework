@@ -18,7 +18,6 @@ CREATE TABLE student
 	middle_name character varying(100),
 	email character varying(150) NOT NULL,
 	year_of_birth character varying(50) NOT NULL,
-PRIMARY KEY (id)
 );
 INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
 (1,'Akyl', 'Kadyrakunov', 'akyl@mail.ru', 2000);
@@ -70,7 +69,7 @@ DROP TABLE student
 --тип колонок на NOT NULL
 
 CREATE TABLE course 
-( id_ character varying (10) NOT NULL,
+( id_  character varying (10) NOT NULL,
   name_of_course character varying (100) NOT NULL,
   date_of_start character varying (50) NOT NULL,
   date_of_end character varying (50) NOT NULL
@@ -91,13 +90,14 @@ CREATE TABLE lesson
 (
 	id_ integer NOT NULL,
 	title character varying(100) NOT NULL,
-	date_of_start character varying(100) NOT NULL,
-	date_of_end character varying(100) NOT NULL
+	date_of_start timestamp NOT NULL,
+	date_of_end timestamp NOT NULL
 );
 INSERT INTO lesson VALUES (1, 'algebra', '22.03.2021 12:00', '22.03.2021 12:45');
-INSERT INTO lesson VALUES (1, 'geometry', '22.03.2021 13:00', '22.03.2021 13:45');
-INSERT INTO lesson VALUES (1, 'physics', '22.03.2021 14:00', '22.03.2021 14:45');
+INSERT INTO lesson VALUES (2, 'geometry', '22.03.2021 13:00', '22.03.2021 13:45');
+INSERT INTO lesson VALUES (3, 'physics', '22.03.2021 14:00', '22.03.2021 14:45');
 SELECT * FROM lesson
+DROP TABLE lesson
 
 -- 4. Создать таблицу ДОМАШНЕЕ ЗАДАНИЕ(id,название, описание, дата начала(дата со временем), 
 --дата конца(дата со временем)) и заполнить данными(минимум 3).
@@ -107,14 +107,15 @@ CREATE TABLE homework
 	id_ integer NOT NULL,
 	title character varying(100) NOT NULL,
 	description character varying(300) NOT NULL,
-	date_of_start character varying(100) NOT NULL,
-	date_of_end character varying(100) NOT NULL
+	date_of_start timestamp NOT NULL,
+	date_of_end timestamp NOT NULL
 );
 INSERT INTO homework VALUES (1, 'english', 'perform tasks # 5, 6, 7', '22.03.2021 12:00',
 							 '24.03.2021 12:00');
-INSERT INTO homework VALUES (1, 'algebra', 'perform tasks # 25, 26, 27', '25.03.2021 12:00',
+INSERT INTO homework VALUES (2, 'algebra', 'perform tasks # 25, 26, 27', '25.03.2021 12:00',
 							 '27.03.2021 12:00');
-INSERT INTO homework VALUES (1, 'geometry', 'perform tasks # 44, 47, 49', '28.03.2021 12:00',
+INSERT INTO homework VALUES (3, 'geometry', 'perform tasks # 44, 47, 49', '28.03.2021 12:00',
 							 '30.03.2021 12:00');
 
 SELECT * FROM homework
+DROP TABLE homework
