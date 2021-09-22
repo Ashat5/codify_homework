@@ -1,0 +1,120 @@
+-- CREATE
+-- 1. Создать таблицу СТУДЕНТ(id,имя, фамилия, отчество(необязательное поле), email, год рождения) и
+--заполнить её данными(минимум 10).
+
+-- ALTER
+-- 1. Измените таблицу СТУДЕНТ, добавив в неё поле "дата регистрации" и "группа" с помощью ALTER, 
+-- сначала добавьте эти поля с возможностью NULL, заполните недостающие данные и измените 
+--тип колонок на NOT NULL.
+
+-- SELECT
+-- 1. Для каждой таблицы после всех преобразований напишите SELECT.
+
+CREATE TABLE student
+(
+	id character varying(10) NOT NULL,
+	first_name character varying(100) NOT NULL,
+	last_name character varying(100) NOT NULL,
+	middle_name character varying(100),
+	email character varying(150) NOT NULL,
+	year_of_birth character varying(50) NOT NULL,
+PRIMARY KEY (id)
+);
+INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
+(1,'Akyl', 'Kadyrakunov', 'akyl@mail.ru', 2000);
+
+INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
+(2, 'Adilet', 'Mamytov', 'adilet@mail.ru', 2000);
+
+INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
+(3, 'Alina', 'Omorkoeva', 'alina@mail.ru', 2001);
+
+INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
+(4, 'Alina', 'Djakypova', 'alina2@mail.ru', 2002);
+
+INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
+(5, 'Alina', 'Omorbekova', 'alina3@mail.ru', 2003);
+
+INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
+(6, 'Andrey', 'Voronov', 'andrey@mail.ru', 1999);
+
+INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
+(7, 'Arstan', 'Begaliev', 'arstan@mail.ru', 1985);
+
+INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
+(8, 'Edil', 'Isakov', 'edil@mail.ru', 2000);
+
+INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
+(9, 'Gulshat', 'Arkytbekova', 'gulshat@mail.ru', 1990);
+
+INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
+(10,'Daniil', 'Kudienko', 'daniil@mail.ru', 2005);
+
+ALTER TABLE student ADD COLUMN date_of_registration varchar (50);
+
+ALTER TABLE student ADD COLUMN students_group varchar (50);
+
+UPDATE student SET date_of_registration = '22.04.2021', students_group = 'python-07';
+
+ALTER TABLE student ALTER COLUMN date_of_registration SET NOT NULL;
+
+ALTER TABLE student ALTER COLUMN students_group SET NOT NULL;
+
+SELECT * FROM student
+DROP TABLE student
+
+-- 2. Создать таблицу КУРС(id,название, дата начала, дата конца) и заполнить данными(минимум 3).
+-- 2. Измените таблицу КУРС, добавив в неё поле "стоимость(числовой тип с плавающей запятой)"
+--с помощью ALTER,
+-- сначала добавьте это поле с возможностью NULL, заполните недостающие данные и измените
+--тип колонок на NOT NULL
+
+CREATE TABLE course 
+( id_ character varying (10) NOT NULL,
+  name_of_course character varying (100) NOT NULL,
+  date_of_start character varying (50) NOT NULL,
+  date_of_end character varying (50) NOT NULL
+);
+INSERT INTO course VALUES (1, 'english_language', '22.05.2022', '22.12.2022');
+INSERT INTO course VALUES (2, 'japan_language', '12.03.2022', '12.08.2022');
+INSERT INTO course VALUES (3, 'russian_language', '01.01.2022', '01.09.2022');
+ALTER TABLE course ADD COLUMN total_cost real;
+UPDATE course SET total_cost = 20000;
+ALTER TABLE course ALTER COLUMN total_cost SET NOT NULL;
+
+SELECT * FROM course
+
+-- 3. Создать таблицу УРОК(id,название, дата начала(дата со временем), дата конца(дата со временем))
+--и заполнить данными(минимум 3).
+
+CREATE TABLE lesson
+(
+	id_ integer NOT NULL,
+	title character varying(100) NOT NULL,
+	date_of_start character varying(100) NOT NULL,
+	date_of_end character varying(100) NOT NULL
+);
+INSERT INTO lesson VALUES (1, 'algebra', '22.03.2021 12:00', '22.03.2021 12:45');
+INSERT INTO lesson VALUES (1, 'geometry', '22.03.2021 13:00', '22.03.2021 13:45');
+INSERT INTO lesson VALUES (1, 'physics', '22.03.2021 14:00', '22.03.2021 14:45');
+SELECT * FROM lesson
+
+-- 4. Создать таблицу ДОМАШНЕЕ ЗАДАНИЕ(id,название, описание, дата начала(дата со временем), 
+--дата конца(дата со временем)) и заполнить данными(минимум 3).
+
+CREATE TABLE homework
+(
+	id_ integer NOT NULL,
+	title character varying(100) NOT NULL,
+	description character varying(300) NOT NULL,
+	date_of_start character varying(100) NOT NULL,
+	date_of_end character varying(100) NOT NULL
+);
+INSERT INTO homework VALUES (1, 'english', 'perform tasks # 5, 6, 7', '22.03.2021 12:00',
+							 '24.03.2021 12:00');
+INSERT INTO homework VALUES (1, 'algebra', 'perform tasks # 25, 26, 27', '25.03.2021 12:00',
+							 '27.03.2021 12:00');
+INSERT INTO homework VALUES (1, 'geometry', 'perform tasks # 44, 47, 49', '28.03.2021 12:00',
+							 '30.03.2021 12:00');
+
+SELECT * FROM homework
