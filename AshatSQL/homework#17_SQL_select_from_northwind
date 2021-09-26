@@ -1,0 +1,37 @@
+SELECT * FROM products;
+
+-- 1. Напишите запрос, чтобы получить название продукта и количество/единицу. 
+
+SELECT product_name, quantity_per_unit FROM products;
+
+-- 2. Напишите запрос для получения текущего списка продуктов (ID и название продукта). 
+
+SELECT product_id, product_name FROM products;
+
+-- 3. Напишите запрос для получения списка продуктов, со скидкой (ID и название продукта). 
+
+SELECT product_id, product_name FROM products WHERE discontinued > 0;
+
+-- 4. Напишите запрос, чтобы получить список самых дорогих и самых дешевых продуктов
+--(название и цена за единицу).
+
+SELECT product_name, unit_price
+FROM products 
+WHERE unit_price = (SELECT MAX(unit_price) FROM products) or 
+unit_price = (SELECT MIN(unit_price) FROM products)					 
+GROUP BY product_name, products.unit_price;
+
+-- 5. Напишите запрос, чтобы получить список продуктов (идентификатор, название,
+--цена за единицу), в котором текущие продукты стоят менее $20. 
+
+SELECT product_id, product_name, unit_price 
+FROM products 
+WHERE unit_price < 20;
+
+-- 6. Выведите всех сотрудников которые старше 55 лет.
+
+SELECT * FROM employees;
+
+SELECT employee_id, last_name, first_name, birth_date 
+FROM employees 
+WHERE (2021 - EXTRACT(YEAR FROM birth_date)) > 55;
