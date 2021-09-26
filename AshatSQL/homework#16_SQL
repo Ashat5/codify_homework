@@ -12,12 +12,12 @@
 
 CREATE TABLE student
 (
-	id character varying(10) NOT NULL,
+	id integer NOT NULL,
 	first_name character varying(100) NOT NULL,
 	last_name character varying(100) NOT NULL,
 	middle_name character varying(100),
 	email character varying(150) NOT NULL,
-	year_of_birth character varying(50) NOT NULL,
+	year_of_birth integer NOT NULL
 );
 INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
 (1,'Akyl', 'Kadyrakunov', 'akyl@mail.ru', 2000);
@@ -49,7 +49,7 @@ INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES
 INSERT INTO student (id, first_name, last_name, email, year_of_birth) VALUES 
 (10,'Daniil', 'Kudienko', 'daniil@mail.ru', 2005);
 
-ALTER TABLE student ADD COLUMN date_of_registration varchar (50);
+ALTER TABLE student ADD COLUMN date_of_registration date;
 
 ALTER TABLE student ADD COLUMN students_group varchar (50);
 
@@ -69,10 +69,10 @@ DROP TABLE student
 --тип колонок на NOT NULL
 
 CREATE TABLE course 
-( id_  character varying (10) NOT NULL,
+( id integer NOT NULL,
   name_of_course character varying (100) NOT NULL,
-  date_of_start character varying (50) NOT NULL,
-  date_of_end character varying (50) NOT NULL
+  date_of_start date NOT NULL,
+  date_of_end date NOT NULL
 );
 INSERT INTO course VALUES (1, 'english_language', '22.05.2022', '22.12.2022');
 INSERT INTO course VALUES (2, 'japan_language', '12.03.2022', '12.08.2022');
