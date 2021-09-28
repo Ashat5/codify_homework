@@ -1,0 +1,22 @@
+-- 1. Выбрать из таблицы products(product_name,unit_price),categories(description,category_name),
+--suppliers(company_name,city,region)
+
+SELECT * FROM products;
+
+SELECT products.product_name, products.unit_price, categories.description, categories.category_name,
+suppliers.company_name, suppliers.city, suppliers.region
+FROM suppliers
+JOIN products ON products.supplier_id = suppliers.supplier_id
+JOIN categories ON categories.category_id = products.category_id; 
+
+-- 2. Выбрать из таблицы customers(company_name,phone), orders(order_date,ship_city,ship_name),
+--shippers(company_name,phone), employees(first_name,last_name)
+
+SELECT * FROM shippers
+
+SELECT customers.company_name, customers.phone, orders.order_date, orders.ship_city, orders.ship_name,
+shippers.company_name, shippers.phone, employees.first_name, employees.last_name
+FROM customers
+JOIN orders ON orders.customer_id = customers.customer_id
+JOIN shippers ON shippers.shipper_id = orders.ship_via
+JOIN employees ON employees.employee_id = orders.employee_id
