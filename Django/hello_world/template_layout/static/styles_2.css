@@ -1,0 +1,70 @@
+/* LMS_HOMEWORK
+ **********************************  */
+
+body{
+    background-color:whitesmoke;
+    line-height: 1.6;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.intro{
+    font-family: 'Arial Narrow Bold', sans-serif;
+    font-size: 60px;
+    margin: 30px 50px;    
+} 
+
+.container{
+    font-family: 'Arial Narrow Bold', sans-serif;
+    margin: 30px 50px; 
+    font-size: 28px;
+    font-weight: bold;   
+} 
+
+input[type=text] {
+    background-color: white;
+    width: 80%;
+    padding: 20px 20px;
+    margin: 20px 50px;
+    font-size: 25px;
+} 
+
+.input_img {
+    position:absolute;
+    bottom:2px;
+    right:5px;
+    width:24px;
+    height:24px;
+}
+
+textarea { 
+    background-color: white;
+    width: 80%;
+    padding: 20px 20px;
+    margin: 20px 50px;
+    font-size: 25px;
+}
+
+.button {
+    background-color: green;
+    padding: 20px 20px;
+    margin: 20px 50px;
+    text-align: center;
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    width: 85%;
+} 
+
+.end {
+    font-size: 30px;
+    text-align: center;
+    color: gray;
+}
+
+h4 span{
+    color: blue;
+    text-decoration: underline;
+}
