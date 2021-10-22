@@ -1,0 +1,253 @@
+
+--- ONE TO ONE
+
+-- Person-Passport
+
+create table person (
+ 	id serial PRIMARY KEY,
+ 	first_name varchar (100) CHECK (first_name !=''),
+ 	last_name varchar (100) CHECK (last_name !=''),
+	middle_name varchar (100) CHECK (middle_name !=''),
+	birth_date date NOT NULL
+	);
+
+create table pasport (
+ 	id serial PRIMARY KEY,
+	issue_date date check (issue_date > '1900-01-01'),
+	expiry_date date not null,
+	constraint chk_expire_date check (expire_date > issue_date)
+	pasport_id integer UNIQUE,
+	person_id integer UNIQUE REFERENCES person(id) ON DELETE CASCADE
+	);
+
+insert into person (first_name, last_name, middle_name, birth_date) values ('Ashat', 'Polvanov', 
+																		'Rustamovich','15.09.1988');
+insert into pasport(pasport_id, person_id) values (12345, 1);
+
+-- Person-Bed
+
+create table person (
+ 	id serial PRIMARY KEY,
+ 	first_name varchar (100) CHECK (first_name !=''),
+ 	last_name varchar (100) CHECK (last_name !=''),
+	middle_name varchar (100) CHECK (middle_name !=''),
+	birth_date date NOT NULL
+	);
+	
+create table bed (
+	id serial PRIMARY KEY,
+	length real check (lenght > 100),
+	width real check ( width > 50),
+	person_id integer UNIQUE REFERENCES person(id) ON DELETE SET NULL
+	
+);
+
+-- Country-Flag 
+
+CREATE TABLE country (
+	id serial PRIMARY KEY,
+	name varchar (50) NOT NULL,
+	population integer NOT NULL
+);
+
+CREATE TABLE flag (
+	id serial PRIMARY KEY,
+	color varchar (50) NOT NULL,
+	country_id integer UNIQUE REFERENCES country(id) ON DELETE SET NULL
+);
+
+-- Spousal Relationships
+
+create table husband (
+ 	id serial PRIMARY KEY,
+ 	first_name varchar (100) CHECK (first_name !=''),
+ 	last_name varchar (100) CHECK (last_name !=''),
+	middle_name varchar (100) CHECK (middle_name !=''),
+	birth_date date NOT NULL,
+	marriage_date date NOT NULL,
+	CONSTRAINT chk_marriage_date CHECK (marriage_date > birth_date),
+	);
+	
+create table wife (
+ 	id serial PRIMARY KEY,
+ 	first_name varchar (100) CHECK (first_name !=''),
+ 	last_name varchar (100) CHECK (last_name !=''),
+	middle_name varchar (100) CHECK (middle_name !=''),
+	birth_date date NOT NULL,
+	marriage_date date NOT NULL,
+	CONSTRAINT chk_marriage_date CHECK (marriage_date > birth_date),
+	husband_id integer UNIQUE REFERENCES husband(id) ON DELETE SET NULL
+	);
+	
+-- Order-OrderDetails
+
+CREATE TABLE order (
+    id serial PRIMARY KEY,
+    customer_id bpchar,
+    employee_id smallint,
+    order_date date,
+    required_date date,
+    shipped_date date,
+    ship_via smallint,
+    freight real,
+    ship_name character varying(40),
+    ship_address character varying(60),
+    ship_city character varying(15),
+    ship_region character varying(15),
+    ship_postal_code character varying(10),
+    ship_country character varying(15)
+);
+
+CREATE TABLE order_details (
+    product_id smallint NOT NULL,
+    unit_price real NOT NULL,
+    quantity smallint NOT NULL,
+    discount real NOT NULL,
+	order_id smallint UNIQUE REFERENCES order(id) ON DELETE SET NULL
+);
+-----------------------------------------------------------------------------------------------
+---ONE TO MANY
+
+-- Doctor - Patient
+
+CREATE TABLE doctor (
+ 	id serial PRIMARY KEY,
+ 	first_name varchar (100) CHECK (first_name !=''),
+ 	last_name varchar (100) CHECK (last_name !=''),
+	middle_name varchar (100) CHECK (middle_name !=''),
+	birth_date date NOT NULL,
+	medical_specification varchar (100) NOT NULL
+	);
+	
+CREATE TABLE patient (
+ 	id serial PRIMARY KEY,
+ 	first_name varchar (100) CHECK (first_name !=''),
+ 	last_name varchar (100) CHECK (last_name !=''),
+	middle_name varchar (100) CHECK (middle_name !=''),
+	birth_date date NOT NULL,
+	diagnosis varchar (100) NOT NULL,
+	doctor_id integer REFERENCES doctor(id) ON DELETE SET NULL
+);	
+INSERT INTO doctor(first_name, last_name, middle_name, birth_date, medical_specification ) 
+values ('Stan', 'Waterman', 'Aleksandrovich', '1999-01-01', 'Surgeon');
+select * from doctor;
+
+INSERT INTO patient(first_name, last_name, middle_name, birth_date, diagnosis, doctor_id ) 
+values ('Frenk', 'Galager', 'Victorovich', '1995-03-15', 'leg fracture',(select id from doctor where first_name = 'Stan' ));	
+select * from patient;
+
+-- Museums-Works
+
+CREATE TABLE museum (
+	id serial PRIMARY KEY,
+	name varchar (50) NOT NULL,
+	address varchar (50) NOT NULL,
+	founding_date date NOT NULL	
+);
+
+insert into museum (name, address, founding_date) values('Wax museum', 'Baker street 18', '1970-09-22');
+select * from museum;
+
+
+CREATE TABLE works (
+	id serial PRIMARY KEY,
+	name varchar (50) NOT NULL,
+	autor varchar (50) NOT NULL,
+	direction varchar (50) NOT NULL,
+	release_date date,
+	museum_id integer REFERENCES museum(id) ON DELETE SET NULL
+);
+
+insert into works (name, autor, direction, release_date, museum_id) 
+values ('Aphrodites figure', 'Cris Manics', 'wax figure', '1995-05-25',
+(select id from museum where name like '%Wax%'));
+
+select * from works;
+
+-- People-Addresses (Each person can live at one address, but each address can house one or
+-- more people.)
+
+-- Owners-Pets (Each pet has one owner, but each owner can have one or more pets.)
+
+-- Farmer-Equipment (Each piece of farming equipment is owned by one farmer, but each farmer
+-- can own many pieces of equipment.)
+
+-- Employee-Order
+
+-- Customer-Order
+
+------------------------------------------------------------------------------------------------------
+--- MANY TO MANY
+
+-- Books-Authors
+
+CREATE TABLE books (
+	id serial PRIMARY KEY,
+	name varchar(100) NOT NULL,
+	direction varchar (50) NOT NULL,
+	release_date date	
+);
+
+CREATE TABLE autors (
+	id serial PRIMARY KEY,
+	first_name varchar(100) NOT NULL,
+	last_name varchar (50) NOT NULL,
+	birth_date date NOT NULL,
+	place_of_birth varchar(100) NOT NULL
+);
+create table BooksAuthors (
+	id serial PRIMARY KEY,
+	books_id int REFERENCES books(id) ON DELETE CASCADE,
+	autors_id int REFERENCES autors(id) ON DELETE CASCADE
+)
+
+insert into books (name, direction, release_date)
+values ('Three musketeers', 'roman', '1950-08-09');
+
+insert into autors (first_name, last_name, birth_date, place_of_birth)
+values ('Aleksandr', 'Duma', '1921-03-19', 'London');
+
+insert into BooksAuthors(books_id, autors_id)
+values ((select id from books where name like '%musketeers'), (select id from autors where first_name = 'Aleksandr'));
+
+select * from BooksAuthors
+-- Ingredients-Recipes (Each food item can be used in multiple recipes and each recipe
+-- requires multiple ingredients.)
+-- Doctors-Patients (Each doctor sees many patients and each patient sees many doctors.)
+
+CREATE TABLE doctors (
+ 	id serial PRIMARY KEY,
+ 	first_name varchar (100) CHECK (first_name !=''),
+ 	last_name varchar (100) CHECK (last_name !=''),
+	middle_name varchar (100) CHECK (middle_name !=''),
+	birth_date date NOT NULL,
+	medical_specification varchar (100) NOT NULL
+	);
+	
+CREATE TABLE patients (
+ 	id serial PRIMARY KEY,
+ 	first_name varchar (100) CHECK (first_name !=''),
+ 	last_name varchar (100) CHECK (last_name !=''),
+	middle_name varchar (100) CHECK (middle_name !=''),
+	birth_date date NOT NULL,
+	diagnosis varchar (100) NOT NULL
+)
+
+create table DoctorsPatients (
+	id serial PRIMARY KEY,
+	doctor_id integer REFERENCES doctors(id) ON DELETE CASCADE,
+	patient_id integer REFERENCES patients(id) ON DELETE CASCADE
+)
+INSERT INTO doctors(first_name, last_name, middle_name, birth_date, medical_specification ) 
+values ('Stan', 'Waterman', 'Aleksandrovich', '1999-01-01', 'Surgeon');
+
+INSERT INTO patients(first_name, last_name, middle_name, birth_date, diagnosis) 
+values ('Frenk', 'Galager', 'Victorovich', '1995-03-15', 'leg fracture');
+select * from DoctorsPatients
+select * from patients
+INSERT INTO DoctorsPatients (doctor_id, patient_id) values (1,1);
+
+-- Employees-Tasks (Each employee works on many tasks at a time while each task is being
+-- worked on by one or more employees.)
+-- Customers-Products (Each customer can purchase many products, and each of those products
+-- can be purchased by many different customers.)
