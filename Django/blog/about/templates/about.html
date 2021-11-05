@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About</title>
+    <link rel="stylesheet" href="{% static 'about_style.css' %}">
+</head>
+<body>
+    <nav class="nav">
+        <a class="nav__link_1" href="#">Dog's blog</a>
+        <a class="nav__link" href="#">Home</a>
+        <a class="nav__link" href="#">Create article</a>
+        <a class="nav__link" href="#">About</a>
+    </nav> -->
+    
+{% block content %}
+<div class="container">
+    <h1 class="h1">Dog's blog!</h1>
+    <!-- <img class="img" alt="picture" src="{% static 'img/pitbull.png' %}"> -->
+    <p class="p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat ut risus eu lacinia. Pellentesque venenatis iaculis nibh sit amet pretium. Nam ullamcorper ut ante nec tempus. Fusce varius dignissim velit elementum iaculis. In at neque turpis. Nulla nec placerat justo. Nulla augue nulla, accumsan et velit a, ultricies dignissim ante. Vestibulum fringilla lacus sollicitudin lectus sollicitudin, eget pharetra purus ornare. Pellentesque blandit nisi libero, nec feugiat libero tristique nec. Cras vehicula ligula libero, eget consequat sapien aliquam at. Sed viverra elementum ornare. Phasellus tellus erat, tincidunt sed scelerisque quis, aliquet id arcu.
+    In eleifend semper augue quis congue. In hac habitasse platea dictumst. Ut varius nisl et nibh finibus maximus. Fusce malesuada lobortis aliquet. Vivamus mauris orci, luctus eu libero et, imperdiet tempor nunc. Maecenas aliquam dui id ante ornare, ac faucibus ante maximus. Sed vitae venenatis massa. Fusce id ullamcorper eros, eu porttitor erat. Cras pulvinar condimentum odio in eleifend. Nam eget pharetra enim, vel euismod risus.
+    Etiam sagittis felis nisi, sit amet fringilla magna luctus ut. Praesent egestas efficitur ipsum, a imperdiet elit tristique non. Vestibulum aliquet interdum eros id rutrum. Donec gravida sem arcu, eu tristique est condimentum efficitur. Donec nec suscipit libero. Nam est lectus</p>
+    <p class="p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec suscipit velit. Cras eu luctus mauris. Nam interdum nisi vitae ex ullamcorper, semper fermentum augue pretium. Nam sed tincidunt metus, ac interdum eros. Duis rutrum purus nec lacus tristique posuere. Fusce scelerisque diam vel mi accumsan, ac scelerisque diam eleifend.</p>
+    <h1 class="h1_">Send your message to Dany!</h1>
+    <form class="form" method="POST">
+        {% csrf_token %}
+        <div>
+            <label class="label" for="id_email">Email</label>
+        </div>
+        <div>
+            <input class="input" type="text" placeholder="Email" name="email" maxlength="254" required_id="id_email">
+        </div> 
+        <div>
+            <label class="label" for="id_first_name">First name</label>
+        </div>
+        <div>
+            <input class="input" type="text" placeholder="First name" name="first_name" maxlength="100" required_id="id_first_name">
+        </div>
+        <div>
+            <label class="label" for="id_last_name">Last name</label>
+        </div>
+        <div>
+            <input class="input" type="text" placeholder="Last name" name="last_name" maxlength="100" required_id="id_last_name">
+        </div> 
+        <div>
+            <label class="label" for="id_message">Message</label>
+        </div>
+        <div>
+            <input class="input" type="text" placeholder="Message" name="message" maxlength="200" required_id="id_message">
+        </div>
+        <div>
+            <input class="allow_mailing" type="checkbox" placeholder="Allow mailing" name="allow_mailing" id="id_allow_mailing">
+            <label class="label" for="id_allow_mailing">Allow mailing</label>
+        </div> 
+        <div>
+            <input class="button" type="submit" value="Send">
+        </div>    
+    </form>
+</div>
+    {% endblock %}
+    <!-- <hr>
+    <h4 class="h4">@All rights reserved 2021-2022</h4>
+    {% if data %}
+    {% for a in data %}
+        <p>{{ a.email}}</p>
+        <p>{{ a.first_name}}</p>
+        <p>{{ a.last_name}}</p>
+        <p>{{ a.message}}</p>
+    {% endfor %}    
+    {% endif %}
+</body>
+</html> -->

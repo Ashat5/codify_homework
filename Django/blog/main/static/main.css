@@ -1,0 +1,29 @@
+.img-thumbnail{
+    max-width: 30%;
+    border: 1px solid black;
+}
+
+.list-group-item:hover{
+    background: cadetblue;
+}
+
+.centered-container {
+    margin: 20px auto;
+}
+
+.desc {
+    height: 30px;
+}
+
+.h6 {
+    height: 30px;
+}
+
+.page-item {
+    border: 1px solid black;
+}
+
+.page-link:hover {
+    background: lightskyblue;
+    color: red;
+}

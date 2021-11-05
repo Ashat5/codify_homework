@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>blog</title>
+    <link rel="stylesheet" href="{% static 'about_style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <nav class="nav">
+        <a class="nav__link_1" href="{% url 'index' %}">Dog's blog</a>
+        <a class="nav__link" href="{% url 'index' %}">Home</a>
+        <a class="nav__link" href="{% url 'article_create' %}">Create article</a>
+        <a class="nav__link" href="{% url 'about_data' %}">About</a>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <hr class="hr">
+    <footer class="footer">@All rights reserved 2021-2022</footer>
+</body>
+</html>

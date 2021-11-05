@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'main.css' %}">
+<h1 class="centered-container text-uppercase text-center">welcome to dog's blog</h1>
+{% if articles %}
+<div class="list-group">
+    {% for article in articles %}
+    <a href="/article_show/{{article.id}}/" class="list-group-item list-group-item-action flex-column align-items-start article-items-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h4 class="mb-1">{{article.title}}</h4>
+            <h6 class="mb-1">{{article.created_date}}</h6>
+        </div>
+        <div class="centered-container top-margin-container text-center">
+            {% if article.image.url %}<img class="img-thumbnail" alt="picture"src="{{article.image.url}}"> 
+            {% else %}
+            Without image
+            {% endif %}
+        </div>
+        <div class="desc">
+            <h6 class="h6">{{article.shot_description}}</h6>
+        </div>
+        <div>
+            <h4 class="centered-container text-center">Comments: {{article.comments.count}}</h4>
+        </div>
+    </a>
+</div>
+    {% endfor %}
+{% else %}
+No articles
+{% endif %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="/1" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    {% for page in pages_range%}
+      <li class="page-item"><a class="page-link" href="/{{ page }}">{{ page }}</a></li>
+    {% endfor %}
+      <li class="page-item">
+        <a class="page-link" href="/{{ pages_range|last }}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+{% endblock%}

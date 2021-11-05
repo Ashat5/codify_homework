@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'article_show.css' %}">
+<div class="list-group">
+    <div class="centered-container top-margin-container text-center">
+        <h3 class="mb-1">{{article.title}}</h3>
+        <h5 class="mb-1">{{article.shot_description}}</h5>
+    </div>
+    <div class="centered-container top-margin-container text-center">
+        {% if article.image.url %}<img class="img-thumbnail" alt="picture"src="{{article.image.url}}"> 
+        {% else %}
+        Without image
+        {% endif %}
+    </div>
+    <div>
+        <h6>{{article.description}}</h6>
+        <h6>{{article.created_date}}</h6>
+    </div>
+    <div class="centered-container top-margin-container text-center">
+        <h3 class="mb-1">Comments</h3>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="div">
+            <label class="label" for="id_name">Enter your name</label>
+        </div>
+        <div>
+            <input class="form-control" type="text" name="name" maxlength="100" required_id='id_name' placeholder="Name">
+        </div>
+        <div class="div">
+            <label class="label" for="id_text">Enter comment</label>
+        </div>
+        <div>
+            <textarea class="form-control" rows="3" name="text" required_id='id_text' placeholder="Text"></textarea>
+        </div>
+        <div class="center">
+            <input class="button" type="submit" value="Send">
+        </div>
+    </form>
+    {% if comments %}
+    {% for comment in comments %}
+        <div class="d-flex w-100 justify-content-between">
+            <h6 class="mb-1">Autor: {{comment.name}}</h6>
+            <h6 class="mb-1">{{comment.created_date}}</h6>
+        </div>
+        <div class="desc">
+            <h6 class="h6">Comment: {{comment.text}}</h6>
+        </div>
+        <hr>
+    {% endfor%}
+    {% endif %}
+</div>
+<!-- <form method="POST">
+    {{ form }}
+    <input type="button">
+
+</form> -->
+
+
+{% endblock %}
